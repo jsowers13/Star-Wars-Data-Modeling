@@ -8,12 +8,26 @@ from eralchemy import render_er
 
 Base = declarative_base()
 
+
 class Person(Base):
     __tablename__ = 'person'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+
+
+class Planet(Base):
+    __tablename__ = 'planet'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+    population = Column(Integer)
+    climate = Column(String(250), nullable=False)
+    terrain = Column(String(250), nullable=False)
+    diameter = Column(Integer)
+    gravity = Column(Integer)
+    orbitalPeriod = Column(Integer)
+
 
 class Address(Base):
     __tablename__ = 'address'
@@ -29,5 +43,6 @@ class Address(Base):
     def to_dict(self):
         return {}
 
-## Draw from SQLAlchemy base
+
+# Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
